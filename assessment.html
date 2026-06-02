@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allure Aesthetic | The Allure Skin Assessment</title>
+<meta name="description" content="A complimentary holistic skin assessment by Allure Aesthetic, Croydon. Tell us what's bothering you and we'll map a full-face protocol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#4c2e29;
+  --burgundy-deep:#3a2220;
+  --burgundy-ink:#2a1816;
+  --beige:#d2c7be;
+  --cream:#faf8f6;
+  --cream-warm:#f3ece3;
+  --ink:#1a0f0d;
+  --muted:#7a6d63;
+  --hairline:rgba(76,46,41,0.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--ink);background:var(--cream);line-height:1.7;font-size:18px;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+.mockup-chip{position:fixed;top:1rem;right:1rem;background:var(--burgundy);color:var(--cream);padding:0.4rem 0.9rem;border-radius:30px;font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:2.5px;text-transform:uppercase;z-index:200;font-weight:500;box-shadow:0 4px 16px rgba(76,46,41,0.25)}
+
+nav{padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--cream);border-bottom:1px solid var(--hairline)}
+nav .mark{font-family:'Forum',serif;font-size:1.5rem;letter-spacing:5px;color:var(--burgundy-ink)}
+nav .back{font-family:'Inter',sans-serif;font-size:0.66rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500}
+nav .back:hover{color:var(--burgundy)}
+@media(max-width:768px){nav{padding:1.2rem 1.5rem}}
+
+.quiz{min-height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;background:var(--cream)}
+.quiz-side{position:relative;background:var(--burgundy-ink);overflow:hidden;min-height:60vh}
+.quiz-side img{width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;inset:0;filter:saturate(0.88) contrast(1.04)}
+.quiz-side::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,15,13,0.45) 0%,rgba(26,15,13,0.1) 40%,rgba(26,15,13,0.7) 100%);pointer-events:none}
+.quiz-side-content{position:relative;z-index:1;padding:4rem 3rem;display:flex;flex-direction:column;height:100%;justify-content:space-between;color:var(--cream)}
+.quiz-side-content .eyebrow{font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:5px;text-transform:uppercase;color:var(--beige);font-weight:500}
+.quiz-side-content blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:1.3;color:var(--cream);font-weight:300;letter-spacing:-0.3px}
+.quiz-side-content cite{font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(210,199,190,0.7);font-style:normal;font-weight:500;display:block;margin-top:1.5rem}
+
+.quiz-form{padding:5rem 4.5rem;display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 80px);position:relative}
+.progress{position:absolute;top:0;left:0;right:0;height:2px;background:var(--hairline)}
+.progress-bar{height:100%;background:var(--burgundy);transition:width 0.4s ease;width:14%}
+
+.step{display:none;max-width:560px}
+.step.active{display:block;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.step-meta{font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--burgundy);margin-bottom:2rem;font-weight:500;display:flex;align-items:center;gap:1rem}
+.step-meta::before{content:"";width:32px;height:1px;background:var(--burgundy);opacity:0.5}
+.step h2{font-family:'Forum',serif;font-size:clamp(2rem,4.4vw,3.4rem);color:var(--burgundy-ink);margin-bottom:1.2rem;font-weight:400;line-height:1.02;letter-spacing:-0.5px}
+.step h2 .italic{font-style:italic;color:var(--burgundy)}
+.step .hint{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--muted);margin-bottom:2.6rem;line-height:1.55;max-width:480px}
+
+.choices{display:grid;gap:0.7rem;margin-bottom:2.6rem}
+.choice{display:block;padding:1.2rem 1.4rem;background:var(--cream);border:1px solid var(--hairline);border-radius:3px;cursor:pointer;transition:all 0.2s;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--burgundy-ink);position:relative;text-align:left;line-height:1.4}
+.choice:hover{border-color:var(--burgundy);background:var(--cream-warm)}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice.selected{background:var(--burgundy-ink);color:var(--cream);border-color:var(--burgundy-ink)}
+.choice .num{font-family:'Forum',serif;font-size:0.85rem;color:var(--burgundy);margin-right:0.9rem;letter-spacing:0}
+.choice.selected .num{color:var(--beige)}
+
+.field{margin-bottom:1.3rem}
+.field label{display:block;font-family:'Inter',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--burgundy);margin-bottom:0.6rem;font-weight:500}
+.field input{width:100%;padding:1rem 0;background:transparent;border:none;border-bottom:1px solid var(--hairline);font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--burgundy-ink);outline:none;transition:border-color 0.2s}
+.field input:focus{border-bottom-color:var(--burgundy)}
+
+.actions{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:2rem;flex-wrap:wrap}
+.btn{font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;font-weight:500;padding:1.2rem 2rem;transition:all 0.25s;cursor:pointer;display:inline-flex;align-items:center;gap:0.7rem}
+.btn-primary{background:var(--burgundy-ink);color:var(--cream)}
+.btn-primary:hover{background:var(--burgundy);padding-left:2.4rem;padding-right:2.4rem}
+.btn-text{color:var(--muted);padding:1.2rem 0;border-bottom:1px solid transparent}
+.btn-text:hover{color:var(--burgundy-ink);border-bottom-color:var(--burgundy-ink)}
+.btn:disabled{opacity:0.3;cursor:not-allowed}
+.btn:disabled:hover{padding:1.2rem 2rem}
+
+.step-count{font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+.result-content{max-width:600px}
+.result-content h2{margin-bottom:1.6rem}
+.result-content .result-body{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--burgundy-ink);line-height:1.7;margin-bottom:1.4rem}
+.result-protocol{margin:2.4rem 0;padding:2rem 2.2rem;background:var(--cream-warm);border-left:2px solid var(--burgundy);font-family:'Cormorant Garamond',serif}
+.result-protocol h4{font-family:'Inter',sans-serif;font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--burgundy);margin-bottom:1.4rem;font-weight:500}
+.result-protocol ol{list-style:none;counter-reset:p}
+.result-protocol li{counter-increment:p;padding:0.85rem 0;border-bottom:1px solid var(--hairline);font-size:1.05rem;color:var(--burgundy-ink);display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:baseline}
+.result-protocol li:last-child{border-bottom:none}
+.result-protocol li::before{content:"0" counter(p);font-family:'Forum',serif;color:var(--burgundy);font-size:1rem}
+
+@media(max-width:900px){.quiz{grid-template-columns:1fr;grid-template-rows:30vh 1fr}.quiz-side{min-height:30vh}.quiz-side-content{padding:2rem 1.5rem;justify-content:flex-end}.quiz-form{padding:3rem 1.5rem;min-height:auto}.actions{flex-direction:column-reverse;align-items:stretch}.btn{justify-content:center}}
+</style>
+</head>
+<body>
+
+<div class="mockup-chip">Concept · Allure 2026</div>
+
+<nav>
+  <div class="mark">ALLURE</div>
+  <a href="concern-focused.html" class="back">← Back to Allure</a>
+</nav>
+
+<div class="quiz">
+  <aside class="quiz-side">
+    <img src="../assets/consultation-marking-client.webp" alt="Allure consultation">
+    <div class="quiz-side-content">
+      <div class="eyebrow">The Allure Skin Assessment</div>
+      <div>
+        <blockquote>"Nobody has ever told me <em>this</em> before."</blockquote>
+        <cite>What Jamie's clients say after their first consultation</cite>
+      </div>
+    </div>
+  </aside>
+
+  <div class="quiz-form">
+    <div class="progress"><div class="progress-bar" id="progress"></div></div>
+
+    <div class="step active" data-step="1">
+      <div class="step-meta">01 · What You See</div>
+      <h2>When you look in the mirror, what catches your eye <span class="italic">first?</span></h2>
+      <p class="hint">There are usually a few. Pick the one that troubles you the most this season.</p>
+      <div class="choices" data-name="primary">
+        <label class="choice"><input type="radio" name="primary" value="tired"><span class="num">A.</span>My skin looks tired no matter how much I sleep</label>
+        <label class="choice"><input type="radio" name="primary" value="volume"><span class="num">B.</span>My face has lost something. Cheeks, lips, or under the eyes</label>
+        <label class="choice"><input type="radio" name="primary" value="sagging"><span class="num">C.</span>My jawline has softened or my brow has dropped</label>
+        <label class="choice"><input type="radio" name="primary" value="lines"><span class="num">D.</span>Lines on my forehead, between my brows, or around my eyes</label>
+      </div>
+      <div class="actions"><span class="step-count">Step 01 of 06</span><button class="btn btn-primary" disabled onclick="next()">Continue →</button></div>
+    </div>
+
+    <div class="step" data-step="2">
+      <div class="step-meta">02 · The Pattern</div>
+      <h2>How long has it been <span class="italic">bothering you?</span></h2>
+      <p class="hint">No wrong answer. We just want to know if this is a new shift or a longer story.</p>
+      <div class="choices" data-name="duration">
+        <label class="choice"><input type="radio" name="duration" value="recent"><span class="num">A.</span>Less than six months</label>
+        <label class="choice"><input type="radio" name="duration" value="year"><span class="num">B.</span>Six to twelve months</label>
+        <label class="choice"><input type="radio" name="duration" value="years"><span class="num">C.</span>A year or longer</label>
+        <label class="choice"><input type="radio" name="duration" value="always"><span class="num">D.</span>It has been on my mind for as long as I can remember</label>
+      </div>
+      <div class="actions"><button class="btn btn-text" onclick="prev()">← Back</button><button class="btn btn-primary" disabled onclick="next()">Continue →</button></div>
+    </div>
+
+    <div class="step" data-step="3">
+      <div class="step-meta">03 · The History</div>
+      <h2>Have you had treatments <span class="italic">before?</span></h2>
+      <p class="hint">If yes, no judgement. If no, you are in the right place. Either way it helps us plan properly.</p>
+      <div class="choices" data-name="history">
+        <label class="choice"><input type="radio" name="history" value="never"><span class="num">A.</span>Never</label>
+        <label class="choice"><input type="radio" name="history" value="once"><span class="num">B.</span>Once or twice, somewhere else</label>
+        <label class="choice"><input type="radio" name="history" value="regular"><span class="num">C.</span>I have a regular clinic</label>
+        <label class="choice"><input type="radio" name="history" value="burned"><span class="num">D.</span>I have, and I did not love the result</label>
+      </div>
+      <div class="actions"><button class="btn btn-text" onclick="prev()">← Back</button><button class="btn btn-primary" disabled onclick="next()">Continue →</button></div>
+    </div>
+
+    <div class="step" data-step="4">
+      <div class="step-meta">04 · The Outcome</div>
+      <h2>What does <span class="italic">success</span> look like?</h2>
+      <p class="hint">Picture the next time someone sees you and pays you a compliment. What did they actually say?</p>
+      <div class="choices" data-name="outcome">
+        <label class="choice"><input type="radio" name="outcome" value="rested"><span class="num">A.</span>"You look rested. Have you been on holiday?"</label>
+        <label class="choice"><input type="radio" name="outcome" value="glowing"><span class="num">B.</span>"Your skin is glowing. What are you using?"</label>
+        <label class="choice"><input type="radio" name="outcome" value="younger"><span class="num">C.</span>"You look so well. Did you lose weight?"</label>
+        <label class="choice"><input type="radio" name="outcome" value="yourself"><span class="num">D.</span>"You look like yourself again."</label>
+      </div>
+      <div class="actions"><button class="btn btn-text" onclick="prev()">← Back</button><button class="btn btn-primary" disabled onclick="next()">Continue →</button></div>
+    </div>
+
+    <div class="step" data-step="5">
+      <div class="step-meta">05 · The Timing</div>
+      <h2>When would you <span class="italic">like to begin?</span></h2>
+      <p class="hint">No pressure to commit. We plan slightly differently depending on your timeline.</p>
+      <div class="choices" data-name="timing">
+        <label class="choice"><input type="radio" name="timing" value="now"><span class="num">A.</span>As soon as possible</label>
+        <label class="choice"><input type="radio" name="timing" value="month"><span class="num">B.</span>Within the next month</label>
+        <label class="choice"><input type="radio" name="timing" value="quarter"><span class="num">C.</span>In the next few months</label>
+        <label class="choice"><input type="radio" name="timing" value="exploring"><span class="num">D.</span>I am just exploring for now</label>
+      </div>
+      <div class="actions"><button class="btn btn-text" onclick="prev()">← Back</button><button class="btn btn-primary" disabled onclick="next()">Continue →</button></div>
+    </div>
+
+    <div class="step" data-step="6">
+      <div class="step-meta">06 · Your Details</div>
+      <h2>Where should we send <span class="italic">your protocol?</span></h2>
+      <p class="hint">Your personalised plan, in writing, before you commit to a single appointment.</p>
+      <div class="field"><label>First Name</label><input type="text" id="name"></div>
+      <div class="field"><label>Email</label><input type="email" id="email"></div>
+      <div class="field"><label>Mobile</label><input type="tel" id="phone"></div>
+      <div class="actions" style="margin-top:1.8rem"><button class="btn btn-text" onclick="prev()">← Back</button><button class="btn btn-primary" onclick="finish()">See My Result →</button></div>
+    </div>
+
+    <div class="step" data-step="7">
+      <div class="step-meta">Your Allure Protocol</div>
+      <div class="result-content">
+        <h2 id="result-title">Built around your <span class="italic">face.</span></h2>
+        <p class="result-body" id="result-body">Based on what you have told us, here is the order Jamie would walk you through at your first consultation.</p>
+
+        <div class="result-protocol">
+          <h4>Your Allure Protocol · Suggested Order</h4>
+          <ol>
+            <li><span>Skin foundation work first. Texture, hydration, glow</span></li>
+            <li><span>Volume returned where time has taken it</span></li>
+            <li><span>Definition restored along the jawline and brow</span></li>
+            <li><span>The lines softened, never erased</span></li>
+          </ol>
+        </div>
+
+        <p class="result-body">This is a suggested order. The exact plan is mapped in person. Your consultation is complimentary and never followed by pressure to book.</p>
+
+        <div class="actions" style="margin-top:2.4rem"><a href="concern-focused.html#consult" class="btn btn-primary">Book My Consultation →</a></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let current = 1;
+
+function update(){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.querySelector(`.step[data-step="${current}"]`).classList.add('active');
+  document.getElementById('progress').style.width = `${(current/7)*100}%`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function next(){ if(current < 7){ current++; update(); } }
+function prev(){ if(current > 1){ current--; update(); } }
+
+document.querySelectorAll('.choices').forEach(g=>{
+  g.addEventListener('click', e=>{
+    const choice = e.target.closest('.choice');
+    if(!choice) return;
+    g.querySelectorAll('.choice').forEach(c=>c.classList.remove('selected'));
+    choice.classList.add('selected');
+    const input = choice.querySelector('input');
+    if(input) input.checked = true;
+    const stepEl = choice.closest('.step');
+    const btn = stepEl.querySelector('.btn-primary');
+    if(btn) btn.disabled = false;
+  });
+});
+
+function finish(){
+  const primary = document.querySelector('input[name="primary"]:checked')?.value;
+  const titles = {
+    tired: 'Skin foundation, <span class="italic">first.</span>',
+    volume: 'Quietly, the volume <span class="italic">back.</span>',
+    sagging: 'Definition <span class="italic">returned.</span>',
+    lines: 'The lines that do not <span class="italic">belong.</span>'
+  };
+  const bodies = {
+    tired: 'You told us the surface of your skin is what bothers you most. That is where Jamie starts. We rebuild the canvas before we treat anything else, because the work on top of bad skin always shows.',
+    volume: 'You told us your face has quietly changed. Volume is almost never about adding more. It is about replacing what time has taken in the precise spot it left from. Done with restraint.',
+    sagging: 'You told us your jawline or brow has dropped. PDO thread lifts are the treatment most clinics in your area do not do well. Jamie places them daily.',
+    lines: 'You told us the lines are what catch you in photos. Softened, never erased. The smallest effective dose, by a registered nurse who knows what your face does when you smile.'
+  };
+  if(primary && titles[primary]){
+    document.getElementById('result-title').innerHTML = titles[primary];
+    document.getElementById('result-body').innerHTML = bodies[primary];
+  }
+  current = 7;
+  update();
+}
+</script>
+
+</body>
+</html>
